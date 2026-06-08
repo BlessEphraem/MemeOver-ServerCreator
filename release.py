@@ -15,7 +15,7 @@ REPO = "OWNER/REPO"  # ← replace with your GitHub repo (e.g. "Ephraem/MemeOver
 
 
 def get_latest_version() -> tuple[int, int, int] | None:
-    url = f"https://api.github.com/repos/{REPO}/releases/latest"
+    url = f"https://api.github.com/repos/BlessEphraem/MemeOver-ServerCreator/releases/latest"
     try:
         req = urllib.request.Request(
             url, headers={"Accept": "application/vnd.github+json"}
@@ -46,6 +46,10 @@ def bump(version: tuple[int, int, int], bump_type: str) -> tuple[int, int, int]:
 
 def fmt(version: tuple[int, int, int]) -> str:
     return ".".join(str(v) for v in version)
+
+
+def ok_print(msg):
+    print(f"  [OK] {msg}")
 
 
 def main() -> None:
@@ -89,6 +93,29 @@ def main() -> None:
     if confirm != "y":
         print("  Aborted.")
         sys.exit(0)
+
+    # ── Push to GitHub first ─────────────────────────────────────────────────
+    print("\n  Pushing to GitHub...")
+
+    # Check if there's anything to commit
+    status = subprocess.run(
+        ["git", "status", "--porcelain"], capture_output=True, text=True
+    )
+    if status.stdout.strip():
+        commit_msg = input(
+            f"  Commit message [press ENTER for 'Release v{version}']: "
+        ).strip()
+        if not commit_msg:
+            commit_msg = f"Release v{version}"
+        subprocess.run(["git", "add", "."])
+        subprocess.run(["git", "commit", "-m", commit_msg])
+
+    push = subprocess.run(["git", "push"], capture_output=True, text=True)
+    if push.returncode != 0:
+        print(f"[ERROR] git push failed:\n{push.stderr}")
+        input("\nPress ENTER to exit.")
+        sys.exit(1)
+    ok_print("Pushed to GitHub.")
 
     print(f"\n  Triggering release v{version}...")
     result = subprocess.run(

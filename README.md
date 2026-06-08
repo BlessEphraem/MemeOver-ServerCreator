@@ -1,6 +1,8 @@
-# MemeOver Bot Installer
+# MemeOver Server Creator
 
 A guided Python installer that sets up a self-hosted [MemeOver](https://github.com/SimonHazard/MemeOver) server on your machine — no technical knowledge required.
+
+It will guide you to create a bot, and a local server to make it run with MemeOver.
 
 > **MemeOver** is a desktop overlay app that lets friends send images, GIFs, videos, audio and text directly onto each other's screens via Discord. This installer sets up the **server component** only. The desktop app must be installed separately.
 
@@ -50,7 +52,7 @@ Bun is installed automatically if missing.
 
 ## Usage
 
-1. Download `MemeOverBotInstaller.py`
+1. Download [`MemeOverBotInstaller.py`](https://github.com/BlessEphraem/MemeOver-ServerCreator/releases)
 2. Double-click it, or run it from a terminal:
    ```
    python MemeOverBotInstaller.py
@@ -60,8 +62,6 @@ Bun is installed automatically if missing.
 ---
 
 ## MemeOver desktop app
-
-This installer sets up the **server only**. Every person who wants to see the overlay — including you — must install the MemeOver desktop app separately:
 
 **[Download MemeOver →](https://github.com/SimonHazard/MemeOver/releases/latest)**
 
