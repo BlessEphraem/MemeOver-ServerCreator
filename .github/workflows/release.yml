@@ -32,5 +32,5 @@ jobs:
         with:
           tag_name: "v${{ inputs.version }}"
           name: "v${{ inputs.version }}"
-          files: dist/MemeOverBotInstaller-v${{ inputs.version }}.zip
+          files: dist/MemeOver-ServerCreator-v${{ inputs.version }}.zip
           generate_release_notes: true

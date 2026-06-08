@@ -14,11 +14,11 @@ def build(version: str) -> None:
     dist = root / "dist"
     dist.mkdir(exist_ok=True)
 
-    archive_name = f"MemeOverBotInstaller-v{version}.zip"
+    archive_name = f"MemeOver-ServerCreator-v{version}.zip"
     archive_path = dist / archive_name
 
     files_to_include = [
-        root / "MemeOverBotInstaller.py",
+        root / "MemeOver-ServerCreator.py",
         root / "README.md",
         root / "LICENSE",
     ]
